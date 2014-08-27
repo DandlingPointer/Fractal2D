@@ -4,6 +4,6 @@ This is a simple javafx application, in which you can create fractals through Lu
 
 ###TODOs
 
-*Canvas resize
-*Accordion should never be collapsed [Stack Overflow Question regarding this](http://stackoverflow.com/questions/10403838/prevent-an-accordion-in-javafx-from-collapsing)
+* Canvas resize
+* Accordion should never be collapsed [Stack Overflow Question regarding this](http://stackoverflow.com/questions/10403838/prevent-an-accordion-in-javafx-from-collapsing)
 
