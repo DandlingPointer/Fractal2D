@@ -4,32 +4,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-<children><Accordion layoutY="178.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
-  <panes>
-    <TitledPane text="Interactive">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-<children><TextArea fx:id="interactiveModeTextField" layoutX="8.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" promptText="Interactive mode: insert your draw code here" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-</children></AnchorPane>
-      </content>
-    </TitledPane>
-    <TitledPane text="File">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-<children><Button layoutX="137.0" layoutY="51.0" mnemonicParsing="false" text="Load" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="41.0" /><TextField editable="false" layoutX="0.097564697265625" layoutY="14.0" promptText="Click To Choose File" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-</children></AnchorPane>
-      </content>
-    </TitledPane>
-    <TitledPane text="Settings">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-      </content>
-    </TitledPane>
-  </panes>
-</Accordion><AnchorPane layoutX="200.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-<children><Canvas height="380.0" layoutX="34.0" width="380.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" /><CheckBox layoutX="362.0" layoutY="14.0" mnemonicParsing="false" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="14.0">
-<tooltip><Tooltip text="render automatically after change" />
-</tooltip></CheckBox><Button contentDisplay="CENTER" layoutX="343.0" layoutY="14.0" mnemonicParsing="false" text="Render" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0" />
-</children></AnchorPane>
-</children></AnchorPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fractal2d.controller.MainController">
+    <children>
+        <Accordion layoutY="178.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
+            <panes>
+                <fx:include source="interactive.fxml"></fx:include>
+                <fx:include source="fileSelect.fxml"></fx:include>
+                <fx:include source="settings.fxml"></fx:include>
+        </panes>
+        </Accordion>
+
+        <fx:include source="drawArea.fxml"></fx:include>
+
+    </children>
+</AnchorPane>

@@ -1,0 +1,14 @@
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.Button?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/" fx:controller="fractal2d.controller.DrawAreaController" layoutX="200.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <children>
+        <Canvas height="380.0" layoutX="34.0" width="380.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+        <CheckBox layoutX="362.0" layoutY="14.0" mnemonicParsing="false" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="14.0">
+            <tooltip><Tooltip text="render automatically after change" /></tooltip>
+        </CheckBox>
+        <Button contentDisplay="CENTER" layoutX="343.0" layoutY="14.0" mnemonicParsing="false" text="Render" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0" />
+    </children>
+</AnchorPane>

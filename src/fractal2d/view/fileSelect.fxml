@@ -1,0 +1,14 @@
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<TitledPane text="File" xmlns:fx="http://javafx.com/fxml/" fx:controller="fractal2d.controller.FileSelectController">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <children>
+                <Button layoutX="137.0" layoutY="51.0" mnemonicParsing="false" text="Load" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="41.0" />
+                <TextField editable="false" layoutX="0.097564697265625" layoutY="14.0" promptText="Click To Choose File" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+            </children>
+        </AnchorPane>
+    </content>
+</TitledPane>
