@@ -1,5 +1,6 @@
 package fractal2d.controller;
 
+import fractal2d.Helpers.Helpers;
 import fractal2d.Helpers.Range;
 import fractal2d.model.PictureGenerator;
 import javafx.application.Platform;
@@ -67,6 +68,10 @@ public class MainController implements Initializable {
     @FXML
     protected void draw(ActionEvent event) {
         if (interactiveController.isActive()) {
+            if (interactiveController.getCode() == null || interactiveController.getCode() == "") {
+                Helpers.displayErrorMessage("No Input!","Interactive input field is empty!", "Write your lua code and hit render!");
+                return;
+            }
             System.out.println("Interactive Mode");
             final PictureGenerator pictureGenerator = new PictureGenerator((int)Math.round(canvas.getWidth()),
                     (int)Math.round(canvas.getHeight()), interactiveController.getCode(), new Range(0.0, 0.0, 1.0, 1.0));
@@ -75,13 +80,13 @@ public class MainController implements Initializable {
         } else if (fileSelectController.isActive()) {
             System.out.println("File Mode");
             File file = fileSelectController.getFile();
-            if (file != null) {
-                final PictureGenerator pictureGenerator = new PictureGenerator((int) Math.round(canvas.getWidth()),
-                        (int) Math.round(canvas.getHeight()), file, new Range(-1.0,-1.0, 1.0, 1.0));
-                drawInBackground(pictureGenerator);
-            } else {
-                Toolkit.getDefaultToolkit().beep();
+            if (file == null) {
+                Helpers.displayErrorMessage("File-Error!","Could not read file!", "Please provide a path to an existing and readable file!");
+                return;
             }
+            final PictureGenerator pictureGenerator = new PictureGenerator((int) Math.round(canvas.getWidth()),
+                    (int) Math.round(canvas.getHeight()), file, new Range(-1.0,-1.0, 1.0, 1.0));
+            drawInBackground(pictureGenerator);
         } else {
             System.out.println("No Mode");
             Toolkit.getDefaultToolkit().beep();
@@ -91,7 +96,7 @@ public class MainController implements Initializable {
 
     private  void drawInBackground(final PictureGenerator pictureGenerator) {
         if (pictureGenerator == null) {
-            System.err.println("Got No Lua Code To Work with!");
+            Toolkit.getDefaultToolkit().beep();
             return;
         }
         progressBar.setVisible(true);

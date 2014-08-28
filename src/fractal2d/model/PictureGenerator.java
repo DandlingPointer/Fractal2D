@@ -1,5 +1,6 @@
 package fractal2d.model;
 
+import fractal2d.Helpers.Helpers;
 import fractal2d.Helpers.MathHelpers;
 import fractal2d.Helpers.Range;
 import javafx.concurrent.Service;
@@ -58,6 +59,7 @@ public class PictureGenerator extends Task<Image> {
                 return null;
             }
         } catch (LuaError e) {
+            Helpers.displayErrorMessage("Lua Compilation error!", e);
             System.err.println("Compilation of lua code failed:");
             System.err.println(e);
             return null;
@@ -74,6 +76,7 @@ public class PictureGenerator extends Task<Image> {
                     Color c = luaHandler.getColorForPosition(x_c, y_c);
                     pw.setColor(x, y, c);
                 } catch(LuaError error) {
+                    Helpers.displayErrorMessage("Lua Error!", error);
                     System.err.println("Lua Error:");
                     System.err.println(error);
                     return null;
