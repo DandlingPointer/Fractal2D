@@ -1,14 +1,54 @@
 package fractal2d.model;
 
+import javafx.scene.paint.Color;
+import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaError;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.Varargs;
+import org.luaj.vm2.lib.jse.JsePlatform;
+
+import java.io.File;
+
 /**
  * Created by lenni on 28.08.14.
  */
 public class LuaHandler {
-    public LuaHandler()  {
 
+    private Globals luaGlobals;
+    private LuaValue currentChunk = null;
+
+    public LuaHandler()  {
+        luaGlobals = JsePlatform.standardGlobals();
     }
 
-    public int getColorForPosition(double x, double y) {
-        return 0;
+    public void compileString(String code) {
+        currentChunk = luaGlobals.load(code);
+    }
+
+    public void compileFile(String path) {
+        currentChunk = luaGlobals.loadfile(path);
+    }
+
+    public Color getColorForPosition(double x, double y) throws LuaError {
+        luaGlobals.set("x", x);
+        luaGlobals.set("y", y);
+        if (currentChunk == null) {
+            throw new LuaError("No code to execute!");
+        }
+        Varargs result = currentChunk.invoke();
+        double r, g ,b;
+        if (result.narg() != 3 || !result.isnumber(0) || !result.isnumber(1) || !result.isnumber(2)) {
+            r = luaGlobals.get("r").checkdouble();
+            g = luaGlobals.get("g").checkdouble();
+            b = luaGlobals.get("b").checkdouble();
+        } else {
+            r = result.checkdouble(0);
+            g = result.checkdouble(1);
+            b = result.checkdouble(2);
+        }
+        if (r > 1 || g > 1 || b > 1 && r < 257 && g < 257 && b < 257) {
+            return Color.rgb((int)Math.round(r), (int)Math.round(g), (int)Math.round(b));
+        }
+        return new Color(r,g, b, 1);
     }
 }

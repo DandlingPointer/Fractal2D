@@ -1,15 +1,18 @@
 package fractal2d.controller;
 
+import fractal2d.Helpers.Range;
 import fractal2d.model.PictureGenerator;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 
@@ -34,6 +37,8 @@ public class MainController implements Initializable {
     private CheckBox checkBoxAutoRender;
     @FXML
     private Canvas canvas;
+    @FXML
+    private ProgressBar progressBar;
 
     private PictureGenerator pictureGenerator;
 
@@ -56,15 +61,36 @@ public class MainController implements Initializable {
         });
         //makes the interactive-tab visible on launch
         menuAccordion.setExpandedPane(interactiveController.getTab());
-
-        //pictureGenerator = new PictureGenerator();
         System.out.println("Initialized Main Controller");
     }
 
     @FXML
     protected void draw(ActionEvent event) {
         if (interactiveController.isActive()) {
-            System.out.println("Interactive Mode");
+            final PictureGenerator pictureGenerator = new PictureGenerator((int)Math.round(canvas.getWidth()),
+                    (int)Math.round(canvas.getHeight()), interactiveController.getCode(), new Range(0.0, 1.0, 0.0, 1.0));
+            progressBar.setVisible(true);
+            progressBar.progressProperty().bind(pictureGenerator.progressProperty());
+            pictureGenerator.stateProperty().addListener(new ChangeListener<Worker.State>() {
+                @Override
+                public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) {
+                    if (newValue == Worker.State.SUCCEEDED) {
+                        Image img = pictureGenerator.valueProperty().get();
+                        if (img == null) {
+                            progressBar.progressProperty().unbind();
+                            progressBar.setVisible(false);
+                            System.err.println("Something went wrong while creating the picture, img was null");
+                            return;
+                        }
+                        canvas.getGraphicsContext2D().drawImage(img, 0, 0);
+                    } else if (newValue == Worker.State.FAILED) {
+                        System.err.println("Something went wrong while creating the picture, Task failed");
+                    }
+                }
+            });
+            Thread t = new Thread(pictureGenerator);
+            t.start();
+
         } else if (fileSelectController.isActive()) {
             System.out.println("File Mode");
         } else {
@@ -76,9 +102,5 @@ public class MainController implements Initializable {
     protected void setAutoRender(ActionEvent event) {
         shouldAutoRender = checkBoxAutoRender.isSelected();
         System.out.println(shouldAutoRender);
-    }
-
-    private void drawImage(double x, double y, Image img) {
-        canvas.getGraphicsContext2D().drawImage(img, 0, 0);
     }
 }
