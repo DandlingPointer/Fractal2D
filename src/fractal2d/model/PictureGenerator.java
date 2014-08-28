@@ -49,40 +49,24 @@ public class PictureGenerator extends Task<Image> {
     protected Image call() throws Exception {
         WritableImage image = new WritableImage(width, height);
         PixelWriter pw = image.getPixelWriter();
-        try {
             if (code != null) {
                 luaHandler.compileString(code);
             } else if (path != null) {
                 luaHandler.compileFile(path.toString());
             } else {
-                System.err.println("This shouldn't have happened. Code String and File Path are null");
-                return null;
+                throw new Exception("No Lua Code provided!");
             }
-        } catch (LuaError e) {
-            Helpers.displayErrorMessage("Lua Compilation error!", e);
-            System.err.println("Compilation of lua code failed:");
-            System.err.println(e);
-            return null;
-        }
 
         System.out.println("Started picture generation");
         int progress = 0;
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                try {
-                    double x_c = MathHelpers.mapValue(x, 0, width, range.getStartX(), range.getEndX());
-                    double y_c = MathHelpers.mapValue(y, 0, height, range.getStartY(), range.getEndY());
+                  double x_c = MathHelpers.mapValue(x, 0, width, range.getStartX(), range.getEndX());
+                  double y_c = MathHelpers.mapValue(y, 0, height, range.getStartY(), range.getEndY());
 
-                    Color c = luaHandler.getColorForPosition(x_c, y_c);
-                    pw.setColor(x, y, c);
-                } catch(LuaError error) {
-                    Helpers.displayErrorMessage("Lua Error!", error);
-                    System.err.println("Lua Error:");
-                    System.err.println(error);
-                    return null;
-                } catch(ArithmeticException e) {
-                    pw.setColor(x, y, Color.WHITE);
-                }
+                  Color c = luaHandler.getColorForPosition(x_c, y_c);
+                  pw.setColor(x, y, c);
+
                 updateProgress(progress, width + height);
                 progress++;
             }

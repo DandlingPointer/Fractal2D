@@ -68,8 +68,8 @@ public class MainController implements Initializable {
     @FXML
     protected void draw(ActionEvent event) {
         if (interactiveController.isActive()) {
-            if (interactiveController.getCode() == null || interactiveController.getCode() == "") {
-                Helpers.displayErrorMessage("No Input!","Interactive input field is empty!", "Write your lua code and hit render!");
+            if (interactiveController.getCode() == null || interactiveController.getCode() == "" || interactiveController.getCode().matches("[ ]*")) {
+                Helpers.displayErrorMessage("No Input!","Interactive input field is empty", "Write your lua code and hit render");
                 return;
             }
             System.out.println("Interactive Mode");
@@ -81,7 +81,7 @@ public class MainController implements Initializable {
             System.out.println("File Mode");
             File file = fileSelectController.getFile();
             if (file == null) {
-                Helpers.displayErrorMessage("File-Error!","Could not read file!", "Please provide a path to an existing and readable file!");
+                Helpers.displayErrorMessage("File Error!","Could not read file", "Please provide a path to an existing and readable file");
                 return;
             }
             final PictureGenerator pictureGenerator = new PictureGenerator((int) Math.round(canvas.getWidth()),
@@ -108,13 +108,11 @@ public class MainController implements Initializable {
                     progressBar.progressProperty().unbind();
                     progressBar.setVisible(false);
                     Image img = pictureGenerator.valueProperty().get();
-                    if (img == null) {
-
-                        System.err.println("Something went wrong while creating the picture, img was null");
-                        return;
-                    }
                     canvas.getGraphicsContext2D().drawImage(img, 0, 0);
                 } else if (newValue == Worker.State.FAILED) {
+                    progressBar.progressProperty().unbind();
+                    progressBar.setVisible(false);
+                    Helpers.displayErrorMessage("Lua Error", pictureGenerator.exceptionProperty().get());
                     System.err.println("Something went wrong while creating the picture, Task failed:");
                     System.err.println(pictureGenerator.exceptionProperty().get());
                 }

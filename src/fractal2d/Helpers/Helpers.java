@@ -14,8 +14,12 @@ public class Helpers {
         Toolkit.getDefaultToolkit().beep();
         Dialogs.create().title(title).masthead(message).message(explanation).showError();
     }
-    public static void displayErrorMessage(String title, Exception e) {
+    public static void displayErrorMessage(String title, Throwable e) {
         Toolkit.getDefaultToolkit().beep();
-        Dialogs.create().title(title).masthead(e.getMessage()).message(e.getCause().getMessage()).showError();
+        Dialogs.create()
+                .title(title != null ? title : "Error")
+                .masthead(e.getMessage() != null ? e.getClass().getName() : "Unknown Error")
+                .message(e.getLocalizedMessage() != null ? e.getLocalizedMessage() : "")
+                .showError();
     }
 }
