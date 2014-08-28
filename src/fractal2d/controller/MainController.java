@@ -1,5 +1,6 @@
 package fractal2d.controller;
 
+import fractal2d.model.PictureGenerator;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,6 +13,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 
+import javax.swing.event.DocumentEvent;
+import java.beans.EventHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,6 +35,8 @@ public class MainController implements Initializable {
     @FXML
     private Canvas canvas;
 
+    private PictureGenerator pictureGenerator;
+
     private boolean shouldAutoRender = false;
 
     @Override
@@ -41,14 +46,19 @@ public class MainController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends TitledPane> property, final TitledPane oldPane, final TitledPane newPane) {
                 if (oldPane != null) oldPane.setCollapsible(true);
-                if (newPane != null) {
-                    newPane.setCollapsible(false);
-                }
+                if (newPane != null) Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        newPane.setCollapsible(false);
+                    }
+                });
             }
         });
-        System.out.println("Initialized Main Controller");
         //makes the interactive-tab visible on launch
         menuAccordion.setExpandedPane(interactiveController.getTab());
+
+        //pictureGenerator = new PictureGenerator();
+        System.out.println("Initialized Main Controller");
     }
 
     @FXML
@@ -68,15 +78,7 @@ public class MainController implements Initializable {
         System.out.println(shouldAutoRender);
     }
 
-    public void drawImage(double x, double y, Image img) {
+    private void drawImage(double x, double y, Image img) {
         canvas.getGraphicsContext2D().drawImage(img, 0, 0);
-    }
-
-    public double getCanvasHeight() {
-        return canvas.getHeight();
-    }
-
-    public double getCanvasWidth() {
-        return canvas.getWidth();
     }
 }
