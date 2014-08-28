@@ -8,10 +8,7 @@ The basic operators `+,-,*,/` and `^` work, so you can do stuff like this: `(c1 
 
 ###TODOs
 
-* Canvas resize
-* ~~Accordion should never be collapsed [Stack Overflow Question regarding this](http://stackoverflow.com/questions/10403838/prevent-an-accordion-in-javafx-from-collapsing)~~
+* Canvas resize; Window resize
 * Syntax highlighting when using interactive mode
-* Draw area should expand with he window
 * Zoom
-* Better error handling, and user informing
 * returning the values in lua doesn't work, use globals r,g,b instead!

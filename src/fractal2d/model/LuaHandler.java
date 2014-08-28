@@ -7,9 +7,6 @@ import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
-import java.io.File;
-import java.io.StringReader;
-
 /**
  * Created by lenni on 28.08.14.
  */
@@ -18,7 +15,7 @@ public class LuaHandler {
     private Globals luaGlobals;
     private LuaValue currentChunk = null;
 
-    public LuaHandler()  {
+    public LuaHandler() {
         luaGlobals = JsePlatform.standardGlobals();
         loadCustomLibs();
 
@@ -44,7 +41,7 @@ public class LuaHandler {
             throw new LuaError("No code to execute!");
         }
         Varargs result = currentChunk.invoke();
-        double r, g ,b;
+        double r, g, b;
         if (result.narg() != 3 || !result.isnumber(0) || !result.isnumber(1) || !result.isnumber(2)) {
             r = luaGlobals.get("r").checkdouble();
             g = luaGlobals.get("g").checkdouble();
@@ -55,8 +52,8 @@ public class LuaHandler {
             b = result.checkdouble(2);
         }
         if (r > 1 || g > 1 || b > 1 && r < 257 && g < 257 && b < 257) {
-            return Color.rgb((int)Math.round(r), (int)Math.round(g), (int)Math.round(b));
+            return Color.rgb((int) Math.round(r), (int) Math.round(g), (int) Math.round(b));
         }
-        return new Color(r,g, b, 1);
+        return new Color(r, g, b, 1);
     }
 }

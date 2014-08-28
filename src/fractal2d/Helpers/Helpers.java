@@ -1,7 +1,5 @@
 package fractal2d.Helpers;
 
-import javafx.scene.Node;
-import org.controlsfx.dialog.Dialog;
 import org.controlsfx.dialog.Dialogs;
 
 import java.awt.*;
@@ -14,6 +12,7 @@ public class Helpers {
         Toolkit.getDefaultToolkit().beep();
         Dialogs.create().title(title).masthead(message).message(explanation).showError();
     }
+
     public static void displayErrorMessage(String title, Throwable e) {
         Toolkit.getDefaultToolkit().beep();
         Dialogs.create()

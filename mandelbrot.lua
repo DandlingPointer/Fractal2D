@@ -6,7 +6,7 @@ for i = 0, 20 do
 	 if (z:absolute() >= 2) then
 		 r = 1.0
 		 g = 1.0
-		 b = 1.0
+		 b = (i-0)/(20-0) * (1.0-0.0) + 0.0
 		 return
 	 end
 end

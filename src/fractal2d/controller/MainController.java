@@ -16,10 +16,11 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
-import javax.swing.event.DocumentEvent;
 import java.awt.*;
-import java.beans.EventHandler;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -69,23 +70,23 @@ public class MainController implements Initializable {
     protected void draw(ActionEvent event) {
         if (interactiveController.isActive()) {
             if (interactiveController.getCode() == null || interactiveController.getCode() == "" || interactiveController.getCode().matches("[ ]*")) {
-                Helpers.displayErrorMessage("No Input!","Interactive input field is empty", "Write your lua code and hit render");
+                Helpers.displayErrorMessage("No Input!", "Interactive input field is empty", "Write your lua code and hit render");
                 return;
             }
             System.out.println("Interactive Mode");
-            final PictureGenerator pictureGenerator = new PictureGenerator((int)Math.round(canvas.getWidth()),
-                    (int)Math.round(canvas.getHeight()), interactiveController.getCode(), new Range(0.0, 0.0, 1.0, 1.0));
+            final PictureGenerator pictureGenerator = new PictureGenerator((int) Math.round(canvas.getWidth()),
+                    (int) Math.round(canvas.getHeight()), interactiveController.getCode(), new Range(0.0, 0.0, 1.0, 1.0));
             drawInBackground(pictureGenerator);
 
         } else if (fileSelectController.isActive()) {
             System.out.println("File Mode");
             File file = fileSelectController.getFile();
             if (file == null) {
-                Helpers.displayErrorMessage("File Error!","Could not read file", "Please provide a path to an existing and readable file");
+                Helpers.displayErrorMessage("File Error!", "Could not read file", "Please provide a path to an existing and readable file");
                 return;
             }
             final PictureGenerator pictureGenerator = new PictureGenerator((int) Math.round(canvas.getWidth()),
-                    (int) Math.round(canvas.getHeight()), file, new Range(-1.0,-1.0, 1.0, 1.0));
+                    (int) Math.round(canvas.getHeight()), file, new Range(-1.0, -1.0, 1.0, 1.0));
             drawInBackground(pictureGenerator);
         } else {
             System.out.println("No Mode");
@@ -94,7 +95,7 @@ public class MainController implements Initializable {
         }
     }
 
-    private  void drawInBackground(final PictureGenerator pictureGenerator) {
+    private void drawInBackground(final PictureGenerator pictureGenerator) {
         if (pictureGenerator == null) {
             Toolkit.getDefaultToolkit().beep();
             return;
@@ -126,5 +127,21 @@ public class MainController implements Initializable {
     protected void setAutoRender(ActionEvent event) {
         shouldAutoRender = checkBoxAutoRender.isSelected();
         System.out.println(shouldAutoRender);
+    }
+
+    @FXML
+    protected void close(ActionEvent event) {
+        ((Stage) canvas.getScene().getWindow()).close();
+    }
+
+    @FXML
+    protected void minimize(ActionEvent event) {
+        ((Stage) canvas.getScene().getWindow()).setIconified(true);
+    }
+
+    @FXML
+    protected void maximize(ActionEvent event) {
+        Toolkit.getDefaultToolkit().beep();
+        System.err.println("Not implemented yet");
     }
 }

@@ -7,7 +7,6 @@ import javafx.scene.control.TitledPane;
 import javafx.stage.FileChooser;
 
 import java.io.File;
-import java.nio.file.Path;
 
 /**
  * Created by lenni on 27.08.14.
@@ -27,7 +26,7 @@ public class FileSelectController {
     public File getFile() {
         if (file != null) {
             if (!file.canRead()) {
-                System.err.println("Can't find or read the file \""+file.getAbsolutePath()+"\"");
+                System.err.println("Can't find or read the file \"" + file.getAbsolutePath() + "\"");
                 return null;
             }
         }

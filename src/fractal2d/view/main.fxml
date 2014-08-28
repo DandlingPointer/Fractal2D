@@ -5,26 +5,49 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fractal2d.controller.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="fractal2d.controller.MainController">
     <children>
-        <Accordion fx:id="menuAccordion" layoutY="178.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
+        <Accordion fx:id="menuAccordion" layoutY="178.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                   AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
             <panes>
-                <fx:include fx:id="interactive" source="interactive.fxml" />
-                <fx:include fx:id="fileSelect" source="fileSelect.fxml" />
-                <fx:include fx:id="settings" source="settings.fxml" />
-        </panes>
+                <fx:include fx:id="interactive" source="interactive.fxml"/>
+                <fx:include fx:id="fileSelect" source="fileSelect.fxml"/>
+                <fx:include fx:id="settings" source="settings.fxml"/>
+            </panes>
         </Accordion>
-
-        <AnchorPane layoutX="200.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml/">
+        <AnchorPane layoutX="200.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+                    xmlns:fx="http://javafx.com/fxml/">
             <children>
-                <Canvas fx:id="canvas" height="380.0" layoutX="34.0" width="380.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-                <CheckBox fx:id="checkBoxAutoRender" disable="true" layoutX="362.0" layoutY="14.0" mnemonicParsing="false" onAction="#setAutoRender" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="14.0">
-                    <tooltip><Tooltip text="render automatically after change" /></tooltip>
-                </CheckBox>
-                <Button contentDisplay="CENTER" layoutX="343.0" layoutY="14.0" mnemonicParsing="false" onAction="#draw" text="Render" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0" />
-                <ProgressBar fx:id="progressBar" visible="false" layoutX="10.0" layoutY="13.0" prefHeight="20.0" prefWidth="277.0" progress="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="15.0" />
+                <Canvas fx:id="canvas" height="380.0" layoutX="34.0" width="380.0" AnchorPane.bottomAnchor="10.0"
+                        AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"/>
             </children>
         </AnchorPane>
-
+        <ToolBar prefHeight="38.0" prefWidth="400.0" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="0.0"
+                 AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
+            <items>
+                <Button contentDisplay="CENTER" layoutX="14.0" layoutY="1.0" mnemonicParsing="false" onAction="#draw"
+                        text="Render" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0"/>
+                <CheckBox fx:id="checkBoxAutoRender" disable="true" layoutX="111.0" layoutY="7.0"
+                          mnemonicParsing="false" onAction="#setAutoRender" AnchorPane.leftAnchor="70.0"
+                          AnchorPane.topAnchor="10.0">
+                    <tooltip>
+                        <Tooltip text="render automatically after change"/>
+                    </tooltip>
+                </CheckBox>
+                <ProgressBar fx:id="progressBar" layoutX="10.0" layoutY="13.0" prefHeight="20.0" prefWidth="197.0"
+                             progress="0.0" visible="false" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="115.0"
+                             AnchorPane.topAnchor="15.0">
+                    <tooltip>
+                        <Tooltip text="Progress bar"/>
+                    </tooltip>
+                </ProgressBar>
+                <Button onAction="#maximize" mnemonicParsing="false" text="+"/>
+                <Button onAction="#minimize" mnemonicParsing="false" text="-"/>
+                <Button onAction="#close" mnemonicParsing="false" text="x"/>
+            </items>
+        </ToolBar>
     </children>
 </AnchorPane>
