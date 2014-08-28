@@ -9,3 +9,5 @@ This is a simple javafx application, in which you can create fractals through Lu
 * Syntax highlighting when using interactive mode
 * Draw area should expand witht he window
 * Zoom
+* Better error handling, and user informing
+* returning the values in lua doesn't work, use globals r,g,b instead!

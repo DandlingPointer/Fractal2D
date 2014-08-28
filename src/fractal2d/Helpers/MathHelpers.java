@@ -8,5 +8,6 @@ public class MathHelpers {
         //X = val, Y = return, A =
         //Y = (X-A)/(B-A) * (D-C) + C => http://stackoverflow.com/questions/345187/math-mapping-numbers
         return (val - minA) / (maxA - minA) * (maxB - minB) + minB;
+
     }
 }

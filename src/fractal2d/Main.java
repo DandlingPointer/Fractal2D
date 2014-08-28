@@ -1,5 +1,6 @@
 package fractal2d;
 
+import fractal2d.Helpers.MathHelpers;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        //double x_c = MathHelpers.mapValue(x, 0, width, range.getStartX(), range.getEndX());
+        //double y_c = MathHelpers.mapValue(y, 0, height, range.getStartY(), range.getEndY());
         launch(args);
     }
 }

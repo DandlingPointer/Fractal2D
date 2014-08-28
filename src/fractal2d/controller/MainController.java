@@ -68,23 +68,25 @@ public class MainController implements Initializable {
     protected void draw(ActionEvent event) {
         if (interactiveController.isActive()) {
             final PictureGenerator pictureGenerator = new PictureGenerator((int)Math.round(canvas.getWidth()),
-                    (int)Math.round(canvas.getHeight()), interactiveController.getCode(), new Range(0.0, 1.0, 0.0, 1.0));
+                    (int)Math.round(canvas.getHeight()), interactiveController.getCode(), new Range(0.0, 0.0, 1.0, 1.0));
             progressBar.setVisible(true);
             progressBar.progressProperty().bind(pictureGenerator.progressProperty());
             pictureGenerator.stateProperty().addListener(new ChangeListener<Worker.State>() {
                 @Override
                 public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) {
                     if (newValue == Worker.State.SUCCEEDED) {
+                        progressBar.progressProperty().unbind();
+                        progressBar.setVisible(false);
                         Image img = pictureGenerator.valueProperty().get();
                         if (img == null) {
-                            progressBar.progressProperty().unbind();
-                            progressBar.setVisible(false);
+
                             System.err.println("Something went wrong while creating the picture, img was null");
                             return;
                         }
                         canvas.getGraphicsContext2D().drawImage(img, 0, 0);
                     } else if (newValue == Worker.State.FAILED) {
-                        System.err.println("Something went wrong while creating the picture, Task failed");
+                        System.err.println("Something went wrong while creating the picture, Task failed:");
+                        System.err.println(pictureGenerator.exceptionProperty().get());
                     }
                 }
             });
