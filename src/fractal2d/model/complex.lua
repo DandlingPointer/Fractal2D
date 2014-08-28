@@ -6,6 +6,10 @@ function Complex:new(o)
 	return o
 end
 
+function Complex:absolute()
+    return math.sqrt((self.r^2 + self.i^2))
+end
+
 function Complex.__add(c1, c2) 
 	return Complex:new({r = c1.r + c2.r,i = c1.i + c2.i})
 end

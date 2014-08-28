@@ -21,7 +21,7 @@ import java.nio.file.Path;
 public class PictureGenerator extends Task<Image> {
     private LuaHandler luaHandler;
     private String code = null;
-    private Path path = null;
+    private String path = null;
     int width;
     int height;
     Range range;
@@ -34,14 +34,14 @@ public class PictureGenerator extends Task<Image> {
         this.range = range;
         this.code = code;
     }
-    public PictureGenerator(int width, int height, Path path, Range range) {
+    public PictureGenerator(int width, int height, File file, Range range) {
         super();
         luaHandler = new LuaHandler();
         luaHandler.compileFile(path.toString());
         this.width = width;
         this.height = height;
         this.range = range;
-        this.path = path;
+        this.path = file.getAbsolutePath();
     }
 
     @Override

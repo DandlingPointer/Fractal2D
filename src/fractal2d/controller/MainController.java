@@ -17,7 +17,9 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 
 import javax.swing.event.DocumentEvent;
+import java.awt.*;
 import java.beans.EventHandler;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -67,37 +69,56 @@ public class MainController implements Initializable {
     @FXML
     protected void draw(ActionEvent event) {
         if (interactiveController.isActive()) {
+            System.out.println("Interactive Mode");
             final PictureGenerator pictureGenerator = new PictureGenerator((int)Math.round(canvas.getWidth()),
                     (int)Math.round(canvas.getHeight()), interactiveController.getCode(), new Range(0.0, 0.0, 1.0, 1.0));
-            progressBar.setVisible(true);
-            progressBar.progressProperty().bind(pictureGenerator.progressProperty());
-            pictureGenerator.stateProperty().addListener(new ChangeListener<Worker.State>() {
-                @Override
-                public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) {
-                    if (newValue == Worker.State.SUCCEEDED) {
-                        progressBar.progressProperty().unbind();
-                        progressBar.setVisible(false);
-                        Image img = pictureGenerator.valueProperty().get();
-                        if (img == null) {
-
-                            System.err.println("Something went wrong while creating the picture, img was null");
-                            return;
-                        }
-                        canvas.getGraphicsContext2D().drawImage(img, 0, 0);
-                    } else if (newValue == Worker.State.FAILED) {
-                        System.err.println("Something went wrong while creating the picture, Task failed:");
-                        System.err.println(pictureGenerator.exceptionProperty().get());
-                    }
-                }
-            });
-            Thread t = new Thread(pictureGenerator);
-            t.start();
+            drawInBackground();
 
         } else if (fileSelectController.isActive()) {
             System.out.println("File Mode");
+            File file = fileSelectController.getFile();
+            if (file != null) {
+                final PictureGenerator pictureGenerator = new PictureGenerator((int) Math.round(canvas.getWidth()),
+                        (int) Math.round(canvas.getHeight()), file, new Range(0.0, 0.0, 1.0, 1.0));
+                drawInBackground();
+            } else {
+                Toolkit.getDefaultToolkit().beep();
+            }
         } else {
             System.out.println("No Mode");
+            Toolkit.getDefaultToolkit().beep();
+
         }
+    }
+
+    private  void drawInBackground() {
+        if (pictureGenerator == null) {
+            System.err.println("Got No Lua Code To Work with!");
+            return;
+        }
+        progressBar.setVisible(true);
+        progressBar.progressProperty().bind(pictureGenerator.progressProperty());
+        pictureGenerator.stateProperty().addListener(new ChangeListener<Worker.State>() {
+            @Override
+            public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) {
+                if (newValue == Worker.State.SUCCEEDED) {
+                    progressBar.progressProperty().unbind();
+                    progressBar.setVisible(false);
+                    Image img = pictureGenerator.valueProperty().get();
+                    if (img == null) {
+
+                        System.err.println("Something went wrong while creating the picture, img was null");
+                        return;
+                    }
+                    canvas.getGraphicsContext2D().drawImage(img, 0, 0);
+                } else if (newValue == Worker.State.FAILED) {
+                    System.err.println("Something went wrong while creating the picture, Task failed:");
+                    System.err.println(pictureGenerator.exceptionProperty().get());
+                }
+            }
+        });
+        Thread t = new Thread(pictureGenerator);
+        t.start();
     }
 
     @FXML
