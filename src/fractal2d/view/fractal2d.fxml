@@ -8,13 +8,21 @@
     <children>
         <Accordion layoutY="178.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
             <panes>
-                <fx:include source="interactive.fxml"></fx:include>
-                <fx:include source="fileSelect.fxml"></fx:include>
-                <fx:include source="settings.fxml"></fx:include>
+                <fx:include fx:id="interactive" source="interactive.fxml"></fx:include>
+                <fx:include fx:id="fileSelect" source="fileSelect.fxml"></fx:include>
+                <fx:include fx:id="settings" source="settings.fxml"></fx:include>
         </panes>
         </Accordion>
 
-        <fx:include source="drawArea.fxml"></fx:include>
+        <AnchorPane xmlns:fx="http://javafx.com/fxml/" layoutX="200.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Canvas fx:id="canvas" height="380.0" layoutX="34.0" width="380.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                <CheckBox fx:id="checkBoxAutoRender" onAction="#setAutoRender" layoutX="362.0" layoutY="14.0" mnemonicParsing="false" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="14.0">
+                    <tooltip><Tooltip text="render automatically after change" /></tooltip>
+                </CheckBox>
+                <Button onAction="#draw" contentDisplay="CENTER" layoutX="343.0" layoutY="14.0" mnemonicParsing="false" text="Render" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0" />
+            </children>
+        </AnchorPane>
 
     </children>
 </AnchorPane>
