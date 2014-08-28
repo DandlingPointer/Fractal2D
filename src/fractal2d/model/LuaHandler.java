@@ -8,6 +8,7 @@ import org.luaj.vm2.Varargs;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.io.File;
+import java.io.StringReader;
 
 /**
  * Created by lenni on 28.08.14.
@@ -19,6 +20,8 @@ public class LuaHandler {
 
     public LuaHandler()  {
         luaGlobals = JsePlatform.standardGlobals();
+        loadCustomLibs();
+
     }
 
     public void compileString(String code) {
@@ -27,6 +30,11 @@ public class LuaHandler {
 
     public void compileFile(String path) {
         currentChunk = luaGlobals.loadfile(path);
+    }
+
+    private void loadCustomLibs() {
+        LuaValue complexLib = luaGlobals.load(getClass().getResourceAsStream("complex.lua"), "complexLib", "bt", luaGlobals);
+        complexLib.call();
     }
 
     public Color getColorForPosition(double x, double y) throws LuaError {
