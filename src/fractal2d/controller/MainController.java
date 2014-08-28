@@ -1,9 +1,15 @@
 package fractal2d.controller;
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 
 import java.net.URL;
@@ -12,7 +18,9 @@ import java.util.ResourceBundle;
 /**
  * Created by lenni on 27.08.14.
  */
-public class MainController {
+public class MainController implements Initializable {
+    @FXML
+    private Accordion menuAccordion;
     @FXML
     private InteractiveController interactiveController;
     @FXML
@@ -26,17 +34,28 @@ public class MainController {
 
     private boolean shouldAutoRender = false;
 
-
-    @FXML
-    private void initialize(URL location, ResourceBundle resources) {
-        interactiveController.getTab().setExpanded(true);
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //active pane shouldn't be collapsible:
+        menuAccordion.expandedPaneProperty().addListener(new ChangeListener<TitledPane>() {
+            @Override
+            public void changed(ObservableValue<? extends TitledPane> property, final TitledPane oldPane, final TitledPane newPane) {
+                if (oldPane != null) oldPane.setCollapsible(true);
+                if (newPane != null) {
+                    newPane.setCollapsible(false);
+                }
+            }
+        });
+        System.out.println("Initialized Main Controller");
+        //makes the interactive-tab visible on launch
+        menuAccordion.setExpandedPane(interactiveController.getTab());
     }
+
     @FXML
     protected void draw(ActionEvent event) {
         if (interactiveController.isActive()) {
             System.out.println("Interactive Mode");
-        } else if (settingsController.isActive()) {
+        } else if (fileSelectController.isActive()) {
             System.out.println("File Mode");
         } else {
             System.out.println("No Mode");
@@ -56,6 +75,7 @@ public class MainController {
     public double getCanvasHeight() {
         return canvas.getHeight();
     }
+
     public double getCanvasWidth() {
         return canvas.getWidth();
     }

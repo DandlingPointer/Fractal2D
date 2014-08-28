@@ -1,7 +1,7 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.TextArea?>
-<TitledPane fx:id="interactiveTab" text="Interactive" xmlns:fx="http://javafx.com/fxml/" fx:controller="fractal2d.controller.InteractiveController">
+<TitledPane fx:id="interactiveTab" text="Interactive" xmlns:fx="http://javafx.com/fxml/" fx:controller="fractal2d.controller.InteractiveController" animated="true">
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
             <children>

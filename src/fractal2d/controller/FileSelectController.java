@@ -17,5 +17,4 @@ public class FileSelectController {
     public TitledPane getTab() {
         return fileTab;
     }
-
 }
