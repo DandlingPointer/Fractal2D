@@ -64,11 +64,11 @@
       <file leaf-file-name="MainController.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/fractal2d/controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7586912" vertical-offset="717" max-vertical-offset="1728">
-              <caret line="95" column="47" selection-start-line="95" selection-start-column="47" selection-end-line="95" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.34560326" vertical-offset="663" max-vertical-offset="1696">
+              <caret line="79" column="85" selection-start-line="79" selection-start-column="85" selection-end-line="79" selection-end-column="85" />
               <folding>
-                <element signature="e#3633#4633#0" expanded="true" />
-                <element signature="e#4622#4623#0" expanded="true" />
+                <element signature="e#3657#4657#0" expanded="true" />
+                <element signature="e#4646#4647#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -77,8 +77,8 @@
       <file leaf-file-name="complex.lua" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fractal2d/model/complex.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.8" vertical-offset="15" max-vertical-offset="832">
-              <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+            <state vertical-scroll-proportion="3.2" vertical-offset="368" max-vertical-offset="832">
+              <caret line="18" column="2" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -87,8 +87,8 @@
       <file leaf-file-name="PictureGenerator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fractal2d/model/PictureGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="1296">
-              <caret line="43" column="42" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="743" max-vertical-offset="1328">
+              <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -134,7 +134,7 @@
         <entry file="file://$PROJECT_DIR$/src/fractal2d/view/fileSelect.fxml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="304">
-              <caret line="9" column="55" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
+              <caret line="9" column="152" selection-start-line="9" selection-start-column="152" selection-end-line="9" selection-end-column="152" />
               <folding />
             </state>
           </provider>
@@ -201,10 +201,10 @@
         <option value="$PROJECT_DIR$/src/fractal2d/Helpers/LuaLibraries.java" />
         <option value="$PROJECT_DIR$/src/fractal2d/model/LuaHandler.java" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/fractal2d/view/fileSelect.fxml" />
-        <option value="$PROJECT_DIR$/src/fractal2d/model/PictureGenerator.java" />
         <option value="$PROJECT_DIR$/src/fractal2d/controller/FileSelectController.java" />
         <option value="$PROJECT_DIR$/src/fractal2d/model/complex.lua" />
+        <option value="$PROJECT_DIR$/src/fractal2d/view/fileSelect.fxml" />
+        <option value="$PROJECT_DIR$/src/fractal2d/model/PictureGenerator.java" />
         <option value="$PROJECT_DIR$/src/fractal2d/controller/MainController.java" />
       </list>
     </option>
@@ -729,8 +729,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="624" max-vertical-offset="1056">
           <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
           <folding>
-            <element signature="e#3633#4633#0" expanded="true" />
-            <element signature="e#4622#4623#0" expanded="true" />
+            <element signature="e#3657#4657#0" expanded="true" />
+            <element signature="e#4646#4647#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -810,8 +810,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="115" max-vertical-offset="299">
           <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
           <folding>
-            <element signature="e#3633#4633#0" expanded="true" />
-            <element signature="e#4622#4623#0" expanded="true" />
+            <element signature="e#3657#4657#0" expanded="true" />
+            <element signature="e#4646#4647#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -883,8 +883,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="115" max-vertical-offset="299">
           <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
           <folding>
-            <element signature="e#3633#4633#0" expanded="true" />
-            <element signature="e#4622#4623#0" expanded="true" />
+            <element signature="e#3657#4657#0" expanded="true" />
+            <element signature="e#4646#4647#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1037,14 +1037,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hs_err_pid9094.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10592">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="352">
@@ -1083,14 +1075,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/fractal2d/view/fileSelect.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="304">
-          <caret line="9" column="55" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/fractal2d/view/interactive.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
@@ -1103,14 +1087,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="56" max-vertical-offset="621">
           <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fractal2d/model/PictureGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="1296">
-          <caret line="43" column="42" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -1131,19 +1107,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/fractal2d/model/complex.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.8" vertical-offset="15" max-vertical-offset="832">
-          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+        <state vertical-scroll-proportion="3.2" vertical-offset="368" max-vertical-offset="832">
+          <caret line="18" column="2" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fractal2d/view/fileSelect.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="304">
+          <caret line="9" column="152" selection-start-line="9" selection-start-column="152" selection-end-line="9" selection-end-column="152" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fractal2d/model/PictureGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="743" max-vertical-offset="1328">
+          <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/fractal2d/controller/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7586912" vertical-offset="717" max-vertical-offset="1728">
-          <caret line="95" column="47" selection-start-line="95" selection-start-column="47" selection-end-line="95" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.34560326" vertical-offset="663" max-vertical-offset="1696">
+          <caret line="79" column="85" selection-start-line="79" selection-start-column="85" selection-end-line="79" selection-end-column="85" />
           <folding>
-            <element signature="e#3633#4633#0" expanded="true" />
-            <element signature="e#4622#4623#0" expanded="true" />
+            <element signature="e#3657#4657#0" expanded="true" />
+            <element signature="e#4646#4647#0" expanded="true" />
           </folding>
         </state>
       </provider>

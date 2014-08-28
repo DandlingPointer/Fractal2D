@@ -42,8 +42,6 @@ public class MainController implements Initializable {
     @FXML
     private ProgressBar progressBar;
 
-    private PictureGenerator pictureGenerator;
-
     private boolean shouldAutoRender = false;
 
     @Override
@@ -72,15 +70,15 @@ public class MainController implements Initializable {
             System.out.println("Interactive Mode");
             final PictureGenerator pictureGenerator = new PictureGenerator((int)Math.round(canvas.getWidth()),
                     (int)Math.round(canvas.getHeight()), interactiveController.getCode(), new Range(0.0, 0.0, 1.0, 1.0));
-            drawInBackground();
+            drawInBackground(pictureGenerator);
 
         } else if (fileSelectController.isActive()) {
             System.out.println("File Mode");
             File file = fileSelectController.getFile();
             if (file != null) {
                 final PictureGenerator pictureGenerator = new PictureGenerator((int) Math.round(canvas.getWidth()),
-                        (int) Math.round(canvas.getHeight()), file, new Range(0.0, 0.0, 1.0, 1.0));
-                drawInBackground();
+                        (int) Math.round(canvas.getHeight()), file, new Range(-1.0,-1.0, 1.0, 1.0));
+                drawInBackground(pictureGenerator);
             } else {
                 Toolkit.getDefaultToolkit().beep();
             }
@@ -91,7 +89,7 @@ public class MainController implements Initializable {
         }
     }
 
-    private  void drawInBackground() {
+    private  void drawInBackground(final PictureGenerator pictureGenerator) {
         if (pictureGenerator == null) {
             System.err.println("Got No Lua Code To Work with!");
             return;

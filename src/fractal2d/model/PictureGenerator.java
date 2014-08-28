@@ -36,12 +36,12 @@ public class PictureGenerator extends Task<Image> {
     }
     public PictureGenerator(int width, int height, File file, Range range) {
         super();
+        this.path = file.getAbsolutePath();
         luaHandler = new LuaHandler();
         luaHandler.compileFile(path.toString());
         this.width = width;
         this.height = height;
         this.range = range;
-        this.path = file.getAbsolutePath();
     }
 
     @Override
@@ -64,6 +64,7 @@ public class PictureGenerator extends Task<Image> {
         }
 
         System.out.println("Started picture generation");
+        int progress = 0;
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 try {
@@ -79,7 +80,8 @@ public class PictureGenerator extends Task<Image> {
                 } catch(ArithmeticException e) {
                     pw.setColor(x, y, Color.WHITE);
                 }
-                updateProgress(x + y, width + height);
+                updateProgress(progress, width + height);
+                progress++;
             }
         }
         System.out.println("Ended picture generation");

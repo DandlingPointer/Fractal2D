@@ -7,7 +7,7 @@
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
             <children>
                 <Button onAction="#openFileDialog" layoutX="137.0" layoutY="51.0" mnemonicParsing="false" text="Choose File" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="41.0" />
-                <TextField fx:id="fileSelectTextField" editable="true" layoutX="0.097564697265625" layoutY="14.0" promptText="Click To Choose File" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                <TextField fx:id="fileSelectTextField" editable="true" layoutX="0.097564697265625" layoutY="14.0" promptText="Enter a path or click the 'Choose File'-button" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
             </children>
         </AnchorPane>
     </content>
