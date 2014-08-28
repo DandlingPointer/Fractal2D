@@ -14,11 +14,11 @@ import java.util.ResourceBundle;
  */
 public class MainController {
     @FXML
-    private InteractiveController interactive;
+    private InteractiveController interactiveController;
     @FXML
-    private SettingsController settings;
+    private SettingsController settingsController;
     @FXML
-    private FileSelectController fileSelect;
+    private FileSelectController fileSelectController;
     @FXML
     private CheckBox checkBoxAutoRender;
     @FXML
@@ -26,15 +26,17 @@ public class MainController {
 
     private boolean shouldAutoRender = false;
 
+
+    @FXML
     private void initialize(URL location, ResourceBundle resources) {
-        interactive.getTab().setExpanded(true);
+        interactiveController.getTab().setExpanded(true);
 
     }
     @FXML
     protected void draw(ActionEvent event) {
-        if (interactive.isActive()) {
+        if (interactiveController.isActive()) {
             System.out.println("Interactive Mode");
-        } else if (settings.isActive()) {
+        } else if (settingsController.isActive()) {
             System.out.println("File Mode");
         } else {
             System.out.println("No Mode");
