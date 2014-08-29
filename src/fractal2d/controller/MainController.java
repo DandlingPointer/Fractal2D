@@ -8,6 +8,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -16,11 +17,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,7 +44,15 @@ public class MainController implements Initializable {
     @FXML
     private ProgressBar progressBar;
 
+    private Range currentZoomStatus;
+    private double xOffset;
+    private double yOffset;
+
+
     private boolean shouldAutoRender = false;
+
+    private boolean zooming = false;
+    private boolean canvasMousePressed = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -64,6 +72,29 @@ public class MainController implements Initializable {
         //makes the interactive-tab visible on launch
         menuAccordion.setExpandedPane(interactiveController.getTab());
         System.out.println("Initialized Main Controller");
+        currentZoomStatus = new Range(-2.0, -2.0, 2.0, 2.0);
+
+        canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+           canvasMousePressed = true;
+            xOffset = 0.0;
+            yOffset = 0.0;
+        });
+
+        canvas.addEventHandler(MouseEvent.MOUSE_MOVED, (MouseEvent event) -> {
+            if (canvasMousePressed) {
+                if (zooming) {
+
+                } else {
+
+
+                }
+            }
+        });
+
+        canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, (MouseEvent event) -> {
+            canvasMousePressed = false;
+
+        });
     }
 
     @FXML
@@ -75,7 +106,7 @@ public class MainController implements Initializable {
             }
             System.out.println("Interactive Mode");
             final PictureGenerator pictureGenerator = new PictureGenerator((int) Math.round(canvas.getWidth()),
-                    (int) Math.round(canvas.getHeight()), interactiveController.getCode(), new Range(0.0, 0.0, 1.0, 1.0));
+                    (int) Math.round(canvas.getHeight()), interactiveController.getCode(), currentZoomStatus);
             drawInBackground(pictureGenerator);
 
         } else if (fileSelectController.isActive()) {
@@ -86,7 +117,7 @@ public class MainController implements Initializable {
                 return;
             }
             final PictureGenerator pictureGenerator = new PictureGenerator((int) Math.round(canvas.getWidth()),
-                    (int) Math.round(canvas.getHeight()), file, new Range(-1.0, -1.0, 1.0, 1.0));
+                    (int) Math.round(canvas.getHeight()), file, currentZoomStatus);
             drawInBackground(pictureGenerator);
         } else {
             System.out.println("No Mode");
