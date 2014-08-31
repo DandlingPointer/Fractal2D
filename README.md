@@ -10,5 +10,6 @@ The basic operators `+,-,*,/` and `^` work, so you can do stuff like this: `(c1 
 
 * Canvas resize; Window resize
 * Syntax highlighting when using interactive mode
-* Zoom
+* Zoom, Picture Moving and window moving
 * returning the values in lua doesn't work, use globals r,g,b instead!
+* better performance!

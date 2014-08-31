@@ -18,6 +18,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -45,8 +46,6 @@ public class MainController implements Initializable {
     private ProgressBar progressBar;
 
     private Range currentZoomStatus;
-    private double xOffset;
-    private double yOffset;
 
 
     private boolean shouldAutoRender = false;
@@ -76,24 +75,12 @@ public class MainController implements Initializable {
 
         canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
            canvasMousePressed = true;
-            xOffset = 0.0;
-            yOffset = 0.0;
         });
 
         canvas.addEventHandler(MouseEvent.MOUSE_MOVED, (MouseEvent event) -> {
-            if (canvasMousePressed) {
-                if (zooming) {
-
-                } else {
-
-
-                }
-            }
         });
 
         canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, (MouseEvent event) -> {
-            canvasMousePressed = false;
-
         });
     }
 
