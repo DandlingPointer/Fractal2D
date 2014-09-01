@@ -5,7 +5,7 @@ import org.controlsfx.dialog.Dialogs;
 import java.awt.*;
 
 /**
- * Created by lenni on 28.08.14.
+ * Created by DandlingPointer on 28.08.14.
  */
 public class Helpers {
     public static void displayErrorMessage(String title, String message, String explanation) {

@@ -10,32 +10,15 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * Created by lenni on 27.08.14.
+ * Created by DandlingPointer on 27.08.14.
  */
 public class Main extends Application {
-    private double xOffset = 0.0;
-    private double yOffset = 0.0;
     private double width = 0.0;
     private double height = 0.0;
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        primaryStage.initStyle(StageStyle.UNDECORATED);
         Parent root = FXMLLoader.load(getClass().getResource("/fractal2d/view/main.fxml"));
 
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setX(event.getScreenX() - xOffset);
-                primaryStage.setY(event.getScreenY() - yOffset);
-            }
-        });
         primaryStage.setTitle("Fractal2D");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();

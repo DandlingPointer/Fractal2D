@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 import java.io.File;
 
 /**
- * Created by lenni on 28.08.14.
+ * Created by DandlingPointer on 28.08.14.
  */
 public class PictureGenerator extends Task<Image> {
     private LuaHandler luaHandler;

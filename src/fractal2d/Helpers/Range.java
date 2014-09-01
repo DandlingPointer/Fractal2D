@@ -1,7 +1,7 @@
 package fractal2d.Helpers;
 
 /**
- * Created by lenni on 28.08.14.
+ * Created by DandlingPointer on 28.08.14.
  */
 public class Range {
     private double startX;

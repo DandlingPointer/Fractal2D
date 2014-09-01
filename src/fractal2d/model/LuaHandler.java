@@ -8,7 +8,7 @@ import org.luaj.vm2.Varargs;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
 /**
- * Created by lenni on 28.08.14.
+ * Created by DandlingPointer on 28.08.14.
  */
 public class LuaHandler {
 
@@ -42,15 +42,9 @@ public class LuaHandler {
         }
         Varargs result = currentChunk.invoke();
         double r, g, b;
-        if (result.narg() != 3 || !result.isnumber(0) || !result.isnumber(1) || !result.isnumber(2)) {
-            r = luaGlobals.get("r").checkdouble();
-            g = luaGlobals.get("g").checkdouble();
-            b = luaGlobals.get("b").checkdouble();
-        } else {
-            r = result.checkdouble(0);
-            g = result.checkdouble(1);
-            b = result.checkdouble(2);
-        }
+        r = luaGlobals.get("r").checkdouble();
+        g = luaGlobals.get("g").checkdouble();
+        b = luaGlobals.get("b").checkdouble();
         if (r > 1 || g > 1 || b > 1 && r < 257 && g < 257 && b < 257) {
             return Color.rgb((int) Math.round(r), (int) Math.round(g), (int) Math.round(b));
         }

@@ -17,6 +17,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -27,7 +28,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Created by lenni on 27.08.14.
+ * Created by DandlingPointer on 27.08.14.
  */
 public class MainController implements Initializable {
     @FXML
@@ -47,12 +48,13 @@ public class MainController implements Initializable {
 
     private Range currentZoomStatus;
 
+    private double oldX = 0.0;
+    private double oldY = 0.0;
+
 
     private boolean shouldAutoRender = false;
 
     private boolean zooming = false;
-    private boolean canvasMousePressed = false;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //active pane shouldn't be collapsible:
@@ -73,14 +75,38 @@ public class MainController implements Initializable {
         System.out.println("Initialized Main Controller");
         currentZoomStatus = new Range(-2.0, -2.0, 2.0, 2.0);
 
+        canvas.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event)-> {
+            zooming = event.isShiftDown();
+        });
+
+        canvas.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            zooming = event.isShiftDown();
+        });
+
         canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-           canvasMousePressed = true;
+            if (zooming) {
+
+            } else {
+                oldX = event.getX();
+                oldY = event.getY();
+            }
         });
 
         canvas.addEventHandler(MouseEvent.MOUSE_MOVED, (MouseEvent event) -> {
+            if (zooming) {
+
+            }
         });
 
         canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, (MouseEvent event) -> {
+            if (zooming) {
+
+            } else {
+                currentZoomStatus.setStartX(oldX - event.getX());
+                currentZoomStatus.setEndX(oldX - event.getX());
+                currentZoomStatus.setStartY(oldY - event.getY());
+                currentZoomStatus.setStartY(oldY - event.getY());
+            }
         });
     }
 
@@ -120,23 +146,22 @@ public class MainController implements Initializable {
         }
         progressBar.setVisible(true);
         progressBar.progressProperty().bind(pictureGenerator.progressProperty());
-        pictureGenerator.stateProperty().addListener(new ChangeListener<Worker.State>() {
-            @Override
-            public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) {
-                if (newValue == Worker.State.SUCCEEDED) {
-                    progressBar.progressProperty().unbind();
-                    progressBar.setVisible(false);
-                    Image img = pictureGenerator.valueProperty().get();
-                    canvas.getGraphicsContext2D().drawImage(img, 0, 0);
-                } else if (newValue == Worker.State.FAILED) {
-                    progressBar.progressProperty().unbind();
-                    progressBar.setVisible(false);
-                    Helpers.displayErrorMessage("Lua Error", pictureGenerator.exceptionProperty().get());
-                    System.err.println("Something went wrong while creating the picture, Task failed:");
-                    System.err.println(pictureGenerator.exceptionProperty().get());
-                }
-            }
-        });
+        pictureGenerator.stateProperty().addListener(
+                (ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) -> {
+                    if (newValue == Worker.State.SUCCEEDED) {
+                        progressBar.progressProperty().unbind();
+                        progressBar.setVisible(false);
+                        Image img = pictureGenerator.valueProperty().get();
+                        canvas.getGraphicsContext2D().drawImage(img, 0, 0);
+                    } else if (newValue == Worker.State.FAILED) {
+                        progressBar.progressProperty().unbind();
+                        progressBar.setVisible(false);
+                        Helpers.displayErrorMessage("Lua Error", pictureGenerator.exceptionProperty().get());
+                        System.err.println("Something went wrong while creating the picture, Task failed:");
+                        System.err.println(pictureGenerator.exceptionProperty().get());
+                    }
+
+                });
         Thread t = new Thread(pictureGenerator);
         t.start();
     }
@@ -147,19 +172,4 @@ public class MainController implements Initializable {
         System.out.println(shouldAutoRender);
     }
 
-    @FXML
-    protected void close(ActionEvent event) {
-        ((Stage) canvas.getScene().getWindow()).close();
-    }
-
-    @FXML
-    protected void minimize(ActionEvent event) {
-        ((Stage) canvas.getScene().getWindow()).setIconified(true);
-    }
-
-    @FXML
-    protected void maximize(ActionEvent event) {
-        Toolkit.getDefaultToolkit().beep();
-        System.err.println("Not implemented yet");
-    }
 }

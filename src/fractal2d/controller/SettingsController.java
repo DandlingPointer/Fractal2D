@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
 
 /**
- * Created by lenni on 27.08.14.
+ * Created by DandlingPointer on 27.08.14.
  */
 public class SettingsController {
     @FXML

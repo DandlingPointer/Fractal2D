@@ -44,9 +44,6 @@
                         <Tooltip text="Progress bar"/>
                     </tooltip>
                 </ProgressBar>
-                <Button onAction="#maximize" mnemonicParsing="false" text="+"/>
-                <Button onAction="#minimize" mnemonicParsing="false" text="-"/>
-                <Button onAction="#close" mnemonicParsing="false" text="x"/>
             </items>
         </ToolBar>
     </children>

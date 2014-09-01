@@ -9,7 +9,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 
 /**
- * Created by lenni on 27.08.14.
+ * Created by DandlingPointer on 27.08.14.
  */
 public class FileSelectController {
     @FXML
