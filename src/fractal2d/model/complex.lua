@@ -44,3 +44,4 @@ function Complex.__tostring(c)
 		return ""..c.r.."+"..c.i.."i"
 	end
 end
+require("LuaLib")
