@@ -23,18 +23,18 @@ function Complex.__mul(c1, c2)
 end
 
 function Complex.__pow(c, exp)
-	if (exp == 0) then return 1 end
-	result = c
-	for i = 2, exp do
-		result = result * c
-	end
-	return result
+    if (exp == 0) then return 1 end
+    result = c
+    for i = 2, exp do
+        result = result * c
+    end
+    return result
 end
 
 function Complex.__div(c1, c2)
-	r = (c1.r * c2.r + c1.i * c2.i) / (c2.r^2 + c2.i^2)
-	i = (c1.i * c2.r - c1.r * c2.i) / (c2.r^2 + c2.i^2)
-	return Complex:new({r = r, i = i})
+    r = (c1.r * c2.r + c1.i * c2.i) / (c2.r^2 + c2.i^2)
+    i = (c1.i * c2.r - c1.r * c2.i) / (c2.r^2 + c2.i^2)
+    return Complex:new({r = r, i = i})
 end
 
 function Complex.__tostring(c) 
@@ -44,4 +44,3 @@ function Complex.__tostring(c)
 		return ""..c.r.."+"..c.i.."i"
 	end
 end
-require("LuaLib")

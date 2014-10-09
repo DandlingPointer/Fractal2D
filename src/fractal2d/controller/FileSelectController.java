@@ -41,6 +41,7 @@ public class FileSelectController {
     protected void openFileDialog(ActionEvent event) {
         FileChooser fc = new FileChooser();
         fc.setTitle("Select lua source file...");
+        fc.setInitialDirectory(new File(System.getProperty("user.dir")));
         this.file = fc.showOpenDialog(fileTab.getScene().getWindow());
         if (this.file != null) {
             fileSelectTextField.setPromptText(file.getAbsolutePath());
